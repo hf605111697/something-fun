@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>  
+  <meta http-equiv="Content-Type" content="text/html; charset=gbk"/>  
+
+  <script type="text/javascript"> 
+    function add()
+    {
+        var a=prompt("请输入学号","");
+        var b=prompt("请输入姓名","");
+        if(a!=""&&b!="")
+        {
+            var newnode=document.createElement("tr");
+            newnode.innerHTML='<td>'+a+'</td>'+'<td>'+b+'</td>'+'<td><a href="javascript:;" onclick="del(this)">删除</a></td>';
+            document.getElementById("table").appendChild(newnode);
+        }
+        else{confirm("请输入完整信息（无法创建）");}
+    }// 编写一个函数，供添加按钮调用，动态在表格的最后一行添加子节点；
+     
+    		
+   	 
+     function del(tr)
+     {
+        document.getElementById("table").removeChild(tr.parentNode.parentNode);
+     }// 创建删除函数
+     
+  </script>
+    <style type="text/css">
+    td:hover{ background-color:#f2f2f2; color:red;}
+    th:hover{ background-color:#f2f2f2; color:red;}
+  </style>
+ </head> 
+ <body> 
+	   <table border="1" width="50%" id="table">
+	   <tr>
+		<th>学号</th>
+		<th>姓名</th>
+		<th>操作</th>
+	   </tr>  
+
+	   <tr>
+		<td>xh001</td>
+		<td>王小明</td>
+		<td><a href="javascript:;" onclick="del(this)">删除</a></td>   <!--在删除按钮上添加点击事件  -->
+	   </tr>
+
+	   <tr>
+		<td>xh002</td>
+		<td>刘小芳</td>
+		<td><a href="javascript:;" onclick="del(this)" >删除</a></td>   <!--在删除按钮上添加点击事件  -->
+	   </tr>  
+
+	   </table>
+	   <input type="button" value="添加一行" onclick="add()" />   <!--在添加按钮上添加点击事件  -->
+ </body>
+</html>

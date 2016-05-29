@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+*{ margin:0; padding:0;}
+.title{ width:190px; height:80px; margin:0 auto; padding-top:40px; font-size:24px; text-align:center; color:red;}
+#btns{ width:220px; height:40px; margin:0 auto; padding:10px}
+#btns span{ text-align:center; margin:20px; padding:10px; background-color:#069; color:#FFF; font-family:"方正咆哮简体"; display:block; border:1px solid #eee; float:left; border-radius:15px; font-weight:bold; cursor:pointer;}
+</style>
+<script type="text/javascript">
+var data=['郑天祥','王应韧','帅气的队长','虚比仔','广东仔','江西仔','weaking boy','妈的下顿在洗吧'],
+	timer=null;
+window.onload=function(){
+	var play=document.getElementById("play"),
+		stop=document.getElementById("stop"),
+		num=0;
+		title=document.getElementById("title");
+		
+		play.onclick=Begin;
+		stop.onclick=Over;
+		document.onkeyup=function(event){
+			event=event||window.event;
+			if(event.keyCode==13&&num==0)
+			{	Begin();
+				num=1;
+				}
+			else{
+				Over();
+				num=0;
+				}}
+		
+	}
+	function Begin(){
+		play.style.backgroundColor='#CCC';
+		num=1;
+		clearInterval(timer);
+		timer=setInterval(function(){
+			var random=Math.floor(Math.random()*data.length);
+			title=document.getElementById("title");
+			title.innerHTML=data[random];
+			},50)
+		}
+	function Over(){
+		play.style.backgroundColor='#069';
+		num=0;
+		clearInterval(timer);
+		}
+</script>
+<title>抽奖</title>
+</head>
+<div id="title" class="title">今天谁洗碗！</div>
+<div id="btns"><span id="play">开 始</span>
+	 <span id="stop">结 束</span>
+</div>
+<body>
+</body>
+</html>

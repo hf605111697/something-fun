@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+all{ margin:0; padding:0;}
+div{ background-color:red; width:200px; height:300px; left:-200px; position:absolute;}
+span{ background-color:blue;width:20px; height:40px; position:absolute;left:200px; color:#FFF; top:75px;}
+</style>
+<script>
+window.onload=function(){
+	var timer=null,
+		a=document.getElementById('a');
+	
+	a.onmouseover=function(){
+		Move(10,0);
+	}
+	a.onmouseout=function(){
+		Move(-10,-200);
+		}
+	function Move(speed,num){
+		clearInterval(timer);
+		a=document.getElementById('a');
+		timer=setInterval(function(){
+			if(a.offsetLeft == num)
+			{
+				clearInterval(timer);
+			
+			}
+			else{
+				a.style.left=a.offsetLeft+ speed +'px';
+				}
+			},30);
+		}
+	
+}
+
+</script>
+<title>无标题文档</title>
+</head>
+<div id="a"><span id="box">分享</span></div>
+<body>
+</body>
+</html>

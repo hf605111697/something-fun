@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script language="javascript" type="text/javascript">
+window.onload=function(){
+	showtime();
+}
+	
+	
+	function showtime(){
+		var endtime=new Date('2016,5,12,08:00:00'),
+		now=new Date(),
+		lefttime=parseInt((endtime.getTime()- now.getTime())/1000),
+		day=parseInt(lefttime/(24*60*60)),
+		hour=parseInt((lefttime/(60*60))%24),
+		minutes=parseInt((lefttime/60)%(60)),
+		seconds=parseInt(lefttime%60);
+	document.getElementById('lefttime').innerHTML='距离计控爆炸还有'+day+'天'+hour+'小时'+minutes+'分钟'+seconds+'秒'	;
+	setTimeout(showtime,500);
+	}
+</script>
+</head>
+<span id='lefttime'></span>
+<body>
+</body>
+</html>

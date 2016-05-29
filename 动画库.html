@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+{ margin:0; padding:0}
+div{ background-color:red; border:4px solid; width:60px; height:60px; margin:10px; filter:alpha(opacity:30); opacity:0.3;}
+</style>
+<script>
+window.onload=function(){
+	var div1=document.getElementById('div1'),
+		div2=document.getElementById('div2');
+		
+		div1.onmouseover=function(){
+			Change(this,{opacity:100,width:70});
+			}
+		div1.onmouseout=function(){
+			Change(this,{opacity:30,width:60});
+			}
+		div2.onmouseover=function(){
+			Change(this,{opacity:100,width:200,height:200})
+			}
+		div2.onmouseout=function(){
+			Change(this,{opacity:30,width:60,height:60})
+			}
+		var timer=null;
+		function Change(obj,json,fn){
+			clearInterval(obj.timer);
+			var FFF=true;
+			obj.timer=setInterval(function(){
+				for(var attr in json)
+			{
+				if(attr=='opacity'){
+			var icur=Math.round(parseFloat(getStyle(obj,attr))*100);
+					}
+				else{
+			var icur=parseInt(getStyle(obj,attr));
+				}
+			var	speed=(json[attr]-icur)/8;
+				speed=speed>0?Math.ceil(speed):Math.floor(speed);
+				if(icur!=json[attr]){
+					FFF=false;
+					}
+				
+					if(attr=='opacity'){
+					obj.style.filter='alpha(opacity+'+(icur+speed)+')';
+					obj.style.opacity=(icur+speed)/100;
+					}
+					else{
+					obj.style[attr]=icur+speed+'px';
+					}
+				if(FFF){
+					clearInterval(obj.timer)
+					if(fn){
+						fn();
+						}}
+			}},30);
+			
+					
+			
+			}
+		function getStyle(obj,attr){
+			if(obj.currentStyle){
+				return obj.currentStyle;
+			}	
+			else{
+				return getComputedStyle(obj,false)[attr];
+				}
+			}
+}
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>
